@@ -1,5 +1,24 @@
 Hello world
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+<form action="/blob/add" method="post">{% csrf_token %}
+X{{ form.as_p }}X
+<input type="text" name="datext"  />
+<input type="submit" value="Submit" />
+</form>
 
 {% for dablob in object_list %}
-<li>{{ dablob.datext }}</li>
+<li>{{ dablob.datext }}
+<form action="/blob/del/{{dablob.pk}}" method="post">{% csrf_token %}
+<input type="hidden" name="id" value="{{dablob.pk}}" />
+<input type="submit" value="X" />
+</form>
+</li>
 {% endfor %}

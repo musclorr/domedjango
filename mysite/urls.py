@@ -7,5 +7,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'mysite.views.home', name='home'),
     url(r'^$', include('blob.urls')),
+    url(r'^blob/', include('blob.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/', include('api.urls')),
 )
