@@ -4,4 +4,7 @@ from django.db import models
 class Blob(models.Model):
 	datext = models.CharField(max_length=4)
 
+	def __unicode__(self):
+		return self.datext
+
 
