@@ -8,9 +8,8 @@ Hello world
 {% endif %}
 
 
-<form action="/blob/add" method="post">{% csrf_token %}
+<form action="/" method="post">{% csrf_token %}
 X{{ form.as_p }}X
-<input type="text" name="datext"  />
 <input type="submit" value="Submit" />
 </form>
 

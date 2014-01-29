@@ -15,18 +15,16 @@ from django.contrib.messages.views import SuccessMessageMixin
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
-class BlobListView(ListView):
-	model = Blob
-
-
-class AddBlobView(SuccessMessageMixin, CreateView):
+class BlobListView(SuccessMessageMixin, CreateView):
 	model = Blob
 	success_url = "/"
 	success_message=" OK!"
+	
+	def get_context_data(self, **kwargs):
+		kwargs['object_list'] = Blob.objects.order_by('id')
+		return super(BlobListView, self).get_context_data(**kwargs)
 
-	def form_invalid(self, form_invalid):
-		#messages.error("invalid form")
-		return redirect("/")
+
 		
 
 	
